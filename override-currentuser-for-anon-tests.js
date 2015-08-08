@@ -1,9 +1,11 @@
-Tinytest.add('override-currentuser-for-anon', function (test) {
+Tinytest.add('override-currentuser-for-anon - currentUser and meteorCurrentUser', function (test) {
   // Define a template that looks up currentUser and tests it
   var template = new Blaze.Template("test", function() {
     var view = this;
     var actualCurrentUser = view.lookup("currentUser")();
     test.equal(actualCurrentUser, expectedCurrentUser);
+    var actualMeteorCurrentUser = view.lookup("meteorCurrentUser")();
+    test.equal(actualMeteorCurrentUser, expectedMeteorCurrentUser);
     return Spacebars.mustache(actualCurrentUser); // We don't need the output
   });
 
@@ -27,6 +29,7 @@ Tinytest.add('override-currentuser-for-anon', function (test) {
 
   // Test a non-anonymous user.
   var expectedCurrentUser = user;
+  var expectedMeteorCurrentUser = user;
   Blaze.toHTML(template);
 
   // Test a non-anonymous user with a resume service.

@@ -10,3 +10,7 @@ Blaze.Template.registerHelper('currentUser', function () {
   }
   return null;
 });
+
+Blaze.Template.registerHelper('meteorCurrentUser', function () {
+  return Meteor.user();
+});
