@@ -17,28 +17,36 @@ Tinytest.add('override-currentuser-for-anon - currentUser and meteorCurrentUser'
 
   // Create a user object for our stub to return.
   var user = {
+    emails: [ {address: true} ], // not a string
+    username: true, // not a string
     profile: {
-      name: "Test User"
-    },
-    services: {
-      google: {
-        id: "test"
-      }
+      name: true // not a string
     }
   };
-
-  // Test a non-anonymous user.
   var expectedCurrentUser = user;
   var expectedMeteorCurrentUser = user;
-  Blaze.toHTML(template);
 
-  // Test a non-anonymous user with a resume service.
-  user.services.resume = { loginTokens: "etc" };
-  Blaze.toHTML(template);
-
-  // Test an anonymous user (i.e. with only a resume service).
-  delete user.services.google;
+  // Test a marginally anonymous user.
   expectedCurrentUser = null;
+  Blaze.toHTML(template);
+
+  // Test non-anonymous users
+  expectedCurrentUser = user;
+
+  // Test a non-anonymous user with only a profile.name
+  delete user.emails;
+  delete user.username;
+  user.profile.name = 'Test User';
+  Blaze.toHTML(template);
+
+  // Test a non-anonymous user with only an email address
+  delete user.profile;
+  user.emails = [ { address: 'test@example.com' }];
+  Blaze.toHTML(template);
+
+  // Test a non-anonymous user with only a username
+  delete user.emails;
+  user.username = 'testuser';
   Blaze.toHTML(template);
 
   // Unstub Meteor.user
