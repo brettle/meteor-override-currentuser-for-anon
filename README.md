@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/brettle/meteor-override-currentuser-for-anon.svg?branch=master)](https://travis-ci.org/brettle/meteor-override-currentuser-for-anon)
 
+*This package is deprecated. Use `brettle:accounts-anonymous-ui` instead.*
+
 Meteor package that overrides Blaze's `currentUser` helper so that it returns null
 for anon users.
 

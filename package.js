@@ -1,8 +1,8 @@
 Package.describe({
   name: 'brettle:override-currentuser-for-anon',
-  version: '0.0.3',
+  version: '0.0.4',
   // Brief, one-line summary of the package.
-  summary: "Overrides Blaze's currentUser helper so that it returns null for anon user.",
+  summary: "Deprecated. Use brettle:accounts-anonymous-ui instead.",
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/brettle/meteor-override-currentuser-for-anon.git',
   // By default, Meteor will default to using README.md for documentation.
@@ -11,7 +11,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.0');
   api.use('blaze');
   api.use('accounts-base');
   api.use('underscore');
